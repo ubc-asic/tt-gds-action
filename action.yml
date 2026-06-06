@@ -79,6 +79,13 @@ runs:
         python-version: '3.11'
         cache: 'pip' # caching pip dependencies
 
+    - name: Patch tt-support-tools to use yowasp-yosys 0.66
+      shell: bash
+      run: |
+        sed -i 's/wasmtime==35.0.0/wasmtime==45.0.0/' tt/requirements.txt
+        sed -i 's/yowasp-runtime==1.78/yowasp-runtime==1.94/' tt/requirements.txt
+        sed -i 's/yowasp-yosys==0.55.0.0.post944/yowasp-yosys==0.66.0.0.post1165/' tt/requirements.txt
+
     - name: Install tt-support-tools dependencies
       shell: bash
       run: pip install -r tt/requirements.txt
